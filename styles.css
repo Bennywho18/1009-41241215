@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+}
+
+select {
+    margin-right: 20px; /* 为下拉菜单与复选框之间设置间距 */
+}
+
+label {
+    font-size: 16px;
+}
+
+button, select {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* 使用 grid 來設置卡片的網格布局 */
+.cards-wrapper {
+    display: grid;
+    gap: 15px; /* 卡片之間的間距設為 15px */
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* 自適應列寬 */
+}
+
+.card-container {
+    perspective: 1000px;
+    width: 140px;  
+    height: 140px; 
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-front {
+    background-color: #fff;
+}
+
+.card-back {
+    background-color: #fafafa;
+    transform: rotateY(180deg);
+}
+
+.card-container.flip .card {
+    transform: rotateY(180deg);
+}
+
+/* 定位時間顯示 */
+#timer {
+    font-size: 24px;
+    position: fixed; /* 固定在頁面某處 */
+    bottom: 10px;    /* 固定在距離頁面底部 10px 的位置 */
+    left: 50%;       /* 水平居中 */
+    transform: translateX(-50%); /* 確保居中 */
+    background-color: rgba(255, 255, 255, 0.8); /* 背景半透明，防止文字難以辨識 */
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 999;    /* 設置較高的層級，確保不會被其他元素覆蓋 */
+}
